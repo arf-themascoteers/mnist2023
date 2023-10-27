@@ -1,4 +1,3 @@
-import os
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 import torchvision.datasets
@@ -15,7 +14,11 @@ def train():
     trans = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
     train_dataset = torchvision.datasets.MNIST(root=constants.DATA_PATH, train=True, transform=trans, download=True)
     train_loader = DataLoader(dataset=train_dataset, batch_size=constants.batch_size, shuffle=True)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
     model = MyConvNet()
+    model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
@@ -25,6 +28,8 @@ def train():
     acc_list = []
     for epoch in range(num_epochs):
         for i, (images, labels) in enumerate(train_loader):
+            images = images.to(device)
+            labels = labels.to(device)
             outputs = model(images)
             loss = criterion(outputs, labels)
             loss_list.append(loss.item())
