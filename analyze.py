@@ -14,9 +14,10 @@ def plot_tensor(tensor):
 def plot_filters(filters):
     filters = filters.clone()
     filters = filters.reshape(filters.shape[0], filters.shape[2], filters.shape[3])
-    filters = filters[0:2]
+    filters = filters[0:3]
     for tensor in filters:
         plot_tensor(tensor)
+
 
 def analyze(model):
     filters = model.layer1[0].weight.data
