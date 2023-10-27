@@ -53,4 +53,4 @@ def train():
                         )
                 )
     torch.save(model, constants.DEFAULT_MODEL_PATH)
-    return model, loss_list, acc_list
+    return model
