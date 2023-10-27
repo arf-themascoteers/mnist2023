@@ -3,6 +3,7 @@ from test import test
 import constants
 import os
 import torch
+from analyze import analyze
 
 
 model = None
