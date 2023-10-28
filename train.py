@@ -5,7 +5,6 @@ from my_conv_net import MyConvNet
 import torch
 import torch.nn as nn
 import constants
-import analyze
 
 
 def train():
@@ -20,12 +19,6 @@ def train():
 
     model = MyConvNet()
 
-    filters = model.layer1[0].weight.data
-    r = torch.rand(5,5)
-    filters[0,0] = r
-    filters[1,0] = r
-
-    analyze.analyze(model)
 
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()

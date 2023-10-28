@@ -1,13 +1,8 @@
-import os
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 import torchvision.datasets
-
 import constants
-from my_conv_net import MyConvNet
 import torch
-import torch.nn as nn
-import os
 
 
 def test(model=None):
